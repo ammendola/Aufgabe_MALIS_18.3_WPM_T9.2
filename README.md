@@ -93,8 +93,10 @@ import os
 for filename in os.listdir():
     if filename.endswith('.zip'):
         os.unlink(Buerener_Zeitung_Film_040.zip)
+```
 
 
+## Second draft
 
 ### Check if zip files are in the local directory
 
@@ -113,7 +115,7 @@ while 1:
   before = after
 ```
 
-## Open FileZilla and upload zip files to a FileZilla directory
+### Open FileZilla and upload zip files to a FileZilla directory
 
 
 ```python
@@ -129,7 +131,7 @@ import shutil
 shutil.move('ubsvirt93/hbzupload/Buerener_Zeitung_Film_040.zip', 'filezilla/ulbms/zip')
 ```
 
-## Connect to sftp server and upload zip files
+### Connect to sftp server and upload zip files
 
 
 ```python
@@ -143,7 +145,7 @@ ftp.storlines('STOR ' + filename, myfile)
 ftp.quit()
 ```
 
-## Delete zip files from the local server
+### Delete zip files from the local server
 
 
 ```python

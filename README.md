@@ -131,7 +131,7 @@ import shutil
 shutil.move('ubsvirt93/hbzupload/Buerener_Zeitung_Film_040.zip', 'filezilla/ulbms/zip')
 ```
 
-### Connect to sftp server and upload zip files
+### Connect to ftp server and upload zip files
 
 
 ```python

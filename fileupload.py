@@ -37,6 +37,7 @@ while 1: # endless loop
 	else: # else ... did not fail before
 		while 2: # store failure in variable
 			try again next day # try again the next day
+			break
   	else: # send e-mail to admin
 	<send an email to ammendol@uni-muenster.de>
 

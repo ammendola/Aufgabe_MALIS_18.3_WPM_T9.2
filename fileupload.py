@@ -14,12 +14,12 @@ Was du also als nächstes tun musst, ist, für alle Elemente in "added" deine Pr
 
 Dazu schau dir am besten mal https://www.python-kurs.eu/dictionaries.php an. Dort werden Dictionaries erklärt und der Abschnitt "Iteration über ein Dictionary" verrät dir, wie du eine Schleife für dein Dictionary bauen kannst.
 
-for f in added.iterkeys(<=300 GB):
+for f in added.itervalues(<=300 GB):
 	print f
 else:
 	server.sendmail("ammendol@uni-muenster.de", "ammendol@uni-muenster.de", msg)
 	
-	 # habe ich jetzt mal probiert: Ich will ja für jedes f in added prüfen, ob die Datei kleiner_gleich 300 GB ist. Also habe ich nach added eine Schleife mit iterkeys und dem Wert <=300 GB gesetzt. Heißt doch, dass er mir nur solche ausspucken soll und alle, die größer nicht, oder? Und wenn nicht, dann soll er mir ne Mail schreiben. 
+	 # habe ich jetzt mal probiert: Ich will ja für jedes f in added prüfen, ob die Datei im Wert kleiner_gleich 300 GB ist. Also habe ich nach added eine Schleife mit itervalues und dem Wert <=300 GB gesetzt. Heißt doch, dass er mir nur solche ausspucken soll und alle, die größer nicht, oder? Und wenn nicht, dann soll er mir ne Mail schreiben. Diesen Befehl habe ich mal von unten geklaut. 
 	
 	for fname in added: # this iterates over all new files which have been found in the directory
 		if os.path.isfile (fname): # if new file exists

@@ -1,10 +1,4 @@
-
-
-import smtplib # ZUSÄTZLICH EINBINDEN FÜR MAILVERSAND
-
-# ab hier zunächst alles wie gehabt
-
-import os, time, pathlib, ftplib # necessary classes have to be imported
+import os, time, pathlib, ftplib, smtplib # necessary classes have to be imported
 path_to_watch = "\\ubsvirt93\hbzupload" # path to watch for new files
 before = dict ([(f, None) for f in os.listdir (path_to_watch)]) # create variable containing all files in the directory
 while 1: # endless loop
@@ -16,11 +10,17 @@ while 1: # endless loop
 
 Im nächsten Schritt prüfst du hier, ob "fname" eine Datei ist, das ist völlig ok, allerdings hast du "fname" ja gar nicht. Das hast du dir hier gerade ausgedacht. Was du aber hast, ist "added" ... und in "added" stehen alle neuen Dateien drin. (Häufig wird es natürlich nur eine Datei sein. Aber es könnten halt auch zwei oder drei oder noch mehr sein.)
 
-Was du also als nächstes tun musst, ist, für alle Elemente in "added" deine Prüfungen durchzuführen. Das bedeutet: Du musst hier durch das Dictionaly "added" laufen und für jedes enthaltene Element prüfen, ob die Datei zu groß ist etc.
+Was du also als nächstes tun musst, ist, für alle Elemente in "added" deine Prüfungen durchzuführen. Das bedeutet: Du musst hier durch das Dictionary "added" laufen und für jedes enthaltene Element prüfen, ob die Datei zu groß ist etc.
 
-Dazu schau dir am besten mal https://www.python-kurs.eu/dictionaries.php an. Dort werden Dictionaries erklärt und der Abschnitt "Iteration über ein Dictionary" verrät dir, wie du eine Schlefe für dein Dictionary bauen kannst.
+Dazu schau dir am besten mal https://www.python-kurs.eu/dictionaries.php an. Dort werden Dictionaries erklärt und der Abschnitt "Iteration über ein Dictionary" verrät dir, wie du eine Schleife für dein Dictionary bauen kannst.
 
-
+for f in added.iterkeys(<=300 GB):
+	print f
+else:
+	server.sendmail("ammendol@uni-muenster.de", "ammendol@uni-muenster.de", msg)
+	
+	 # habe ich jetzt mal probiert: Ich will ja für jedes f in added prüfen, ob die Datei kleiner_gleich 300 GB ist. Also habe ich nach added eine Schleife mit iterkeys und dem Wert <=300 GB gesetzt. Heißt doch, dass er mir nur solche ausspucken soll und alle, die größer nicht, oder? Und wenn nicht, dann soll er mir ne Mail schreiben. 
+	
 	for fname in added: # this iterates over all new files which have been found in the directory
 		if os.path.isfile (fname): # if new file exists
 			print ("file exist!")

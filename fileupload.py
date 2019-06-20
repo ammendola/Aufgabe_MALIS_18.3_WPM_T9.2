@@ -3,7 +3,7 @@ import os, time, pathlib, ftplib, smtplib
 
 # path to watch for new files
 path_to_watch = "C:/Upload"
-path_on_server = "path"
+path_on_server = "/zdiginrwulbms"
 uploadsuccessful = False
 listoffaileduploadsfromdaybefore = dict()
 # create variable containing all files in the directory
@@ -12,8 +12,8 @@ before = dict ([(f, None) for f in os.listdir (path_to_watch)])
 # the following function sends a given message via email
 def sendmailtoadmin(msg):
 	adminaddress = "ammendol@uni-muenster"
-	server = smtplib.SMTP('smtp.gmail.com', 587) # connect to mail server			
-	server.login("youremailusername", "password") #Next, log in to the server
+	server = smtplib.SMTP('secmail.uni-muenster.de', 587) # connect to mail server
+	server.login("ammendol", "Buckdir99") #Next, log in to the server
 	server.sendmail(adminaddress, adminaddress, msg)
 
 # the following function checks if the file is not too big for upload
@@ -24,8 +24,8 @@ def filenottoobig(filepath):
 		return false
 
 def uploadfiletomyserver(filepath):
-		ftp = FTP('_your_server_address_')  
-		ftp.login('_username_', '_password_')  
+		ftp = FTP('zdigi.hbz-nrw.de')  
+		ftp.login('ulbms', 'ULBMSXXsftp')  
 		with open(filepath, 'r') as f:  
 			ftp.storbinary('STOR %s' % path_on_server, f)  
 		ftp.quit()
@@ -40,7 +40,7 @@ def countfailedupload(file):
 
 # endless loop to continuously watch the directory and act upon changes
 while 1: 
-	time.sleep (86400) # wait for one day
+	time.sleep (30) # wait for one day (86400)
 	after = dict ([(f, None) for f in os.listdir (path_to_watch)]) # after now contains all files currently in the directory
 	added = [f for f in after if not f in before] # added now contains all new files in directory
 	removed = [f for f in before if not f in after] # not really relevant at the moment
@@ -54,9 +54,14 @@ while 1:
 				# upload file to server
 				if uploadfiletomyserver(fname):
 					sendmailtoadmin("upload of file " + fname + " successful!")
-					uploadsuccessful = false # needs to be reset for next upload
+					uploadsuccessful = false # to be reset for next upload
 					listoffaileduploadsfromdaybefore.pop(fname) # remove successfully uploaded file from list of previous failures
-					# TODO delete file locally
+					# delete file locally
+					## If file exists, delete it ##
+					if os.path.isfile(fname):
+						os.remove(fname)
+					else:    ## Show an error ##
+						print("Error: %s file not found" % fname)
 				else:
 					# upload not successful
 					# check if upload failed before
@@ -75,7 +80,3 @@ while 1:
 
 # if removed: print "Removed: ", ", ".join (removed) # not really relevant at the moment
 before = after # reset for next check which starts after sleep timer
-
-
-
-

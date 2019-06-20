@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[ ]:
-
-
 # necessary classes have to be imported
 import os, time, pathlib, ftplib, smtplib
 
@@ -81,9 +75,6 @@ while 1:
 
 # if removed: print "Removed: ", ", ".join (removed) # not really relevant at the moment
 before = after # reset for next check which starts after sleep timer
-
-
-# In[ ]:
 
 
 

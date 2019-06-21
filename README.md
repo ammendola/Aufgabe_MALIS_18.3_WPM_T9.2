@@ -1,6 +1,6 @@
 ## Dokumentation eines automatisierten Upload-Prozesses
 
-Innerhalb eines Digitalisierungsprojektes an der ULB Münster soll der bislang manuell durchgeführte Vorgang, die ZIP-Dateien in das Upload-Verzeichnis hochzuladen, automatisiert werden. Hierfür wurde mit Python ein Skript geschrieben, das genau diesen Vorgang initiiert, sobald Dateien auf dem lokalen Server hochgeladen wurden. Dabei darf die Datenmenge pro Upload-Vorgang allerdings nicht größer als 300 GB sein, damit der Upload in einem nächtlichen Prozess durchlaufen kann und die täglichen Arbeitsprozesse nicht behindert werden.
+Innerhalb eines Digitalisierungsprojektes an der ULB Münster soll der bislang manuell durchgeführte Vorgang, die Bild-Dateien in das Upload-Verzeichnis hochzuladen, automatisiert werden. Hierfür wurde mit Python ein Skript geschrieben, das genau diesen Vorgang initiiert, sobald Dateien auf dem lokalen Server hochgeladen wurden. Dabei darf die Datenmenge pro Upload-Vorgang allerdings nicht größer als 300 GB sein, damit der Upload in einem nächtlichen Prozess durchlaufen kann und die täglichen Arbeitsprozesse nicht behindert werden.
 
 Zunächst wurden die benötigten Klassen/Libraries importiert (os, time, pathlib, ftplib, smtlib) und einige Variablen definiert werden, die für die Umsetzung des Codes wichtig sind, z.B. die Pfade zur Datei und zum Server oder eine Liste der am Vortag fehlgeschlagenen Uploads (Code-Zeilen 4–10).
 

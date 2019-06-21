@@ -13,7 +13,7 @@ before = dict ([(f, None) for f in os.listdir (path_to_watch)])
 def sendmailtoadmin(msg):
 	adminaddress = "ammendol@uni-muenster"
 	server = smtplib.SMTP('secmail.uni-muenster.de', 587) # connect to mail server
-	server.login("ammendol", "Buckdir99") #Next, log in to the server
+	server.login("ammendol", "XXX") #Next, log in to the server
 	server.sendmail(adminaddress, adminaddress, msg)
 
 # the following function checks if the file is not too big for upload

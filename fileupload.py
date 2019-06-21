@@ -3,7 +3,7 @@ import os, time, pathlib, ftplib, smtplib
 
 # path to watch for new files
 path_to_watch = "C:/Upload"
-path_on_server = "/zdiginrwulbms"
+path_on_server = "/Neues Verzeichnis"
 uploadsuccessful = False
 listoffaileduploadsfromdaybefore = dict()
 # create variable containing all files in the directory
@@ -24,8 +24,8 @@ def filenottoobig(filepath):
 		return false
 
 def uploadfiletomyserver(filepath):
-		ftp = FTP('zdigi.hbz-nrw.de')  
-		ftp.login('ulbms', 'ULBMSXXsftp')  
+		ftp = FTP('localhost')  
+		ftp.login('test', 'test')  
 		with open(filepath, 'r') as f:  
 			ftp.storbinary('STOR %s' % path_on_server, f)  
 		ftp.quit()

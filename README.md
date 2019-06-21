@@ -14,10 +14,11 @@ Wenn ja, wird anhand der Funktion "filenottoobig" geprüft, ob die Datei nicht z
 
 Wenn beides zutrifft, wird die Datei auf den Server hochgeladen und es wird eine Mail an den Admin geschickt, dass der Upload erfolgreich war. Zudem wird die Datei sowohl aus der Liste der am Vortag nicht erfolgreich hochgeladenen Dateien (falls sie dort stand) als auch aus dem lokalen Verzeichnis gelöscht.
 
+Wenn die Prüfung ergibt, dass die Datei zu groß für den automatischen Upload ist (Code-Zeile 73), wird eine entsprechende Mail an den Admin geschickt.
+
 >> Wenn der Upload nicht erfolgreich war, wird anhand der eingangs definierten Funktion "countfailedupload" geprüft, ob der Upload schon mehr als einmal fehlgeschlagen ist.
 
 >> Wenn ja, wird eine Mail an den Admin gesendet, dass der Upload zweimal fehlgeschlagen ist und eine manuelle Prüfung notwendig ist.
 
 >> Wenn der Upload bislang nur einmal fehlgeschlagen ist, soll der Upload am nächsten Tag wiederholt werden, der fehlgeschlagene Upload soll aber gespeichert werden (= 1), falls er noch einmal fehlschlägt.
 
-Wenn die Prüfung, ob die Datei zu groß für den automatischen Upload ist (Code-Zeile 73), positiv ausfällt, soll eine entsprechende Mail an den Admin geschickt werden.

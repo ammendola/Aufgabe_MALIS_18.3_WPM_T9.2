@@ -13,12 +13,12 @@ before = dict ([(f, None) for f in os.listdir (path_to_watch)])
 def sendmailtoadmin(msg):
 	adminaddress = "ammendol@uni-muenster"
 	server = smtplib.SMTP('secmail.uni-muenster.de', 587) # connect to mail server
-	server.login("ammendol", "XXX") #Next, log in to the server
+	server.login("ammendol", "XXX") # log in to the server
 	server.sendmail(adminaddress, adminaddress, msg)
 
 # the following function checks if the file is not too big for upload
 def filenottoobig(filepath):
-	if (of.path.getsize(filepath) < 3000000):
+	if (os.path.getsize(filepath) < 300000):
 		return true
 	else:
 		return false
@@ -40,7 +40,7 @@ def countfailedupload(file):
 
 # endless loop to continuously watch the directory and act upon changes
 while 1: 
-	time.sleep (30) # wait for one day (86400)
+	time.sleep (30) # here seconds. Wait for one day (86400)
 	after = dict ([(f, None) for f in os.listdir (path_to_watch)]) # after now contains all files currently in the directory
 	added = [f for f in after if not f in before] # added now contains all new files in directory
 	removed = [f for f in before if not f in after] # not really relevant at the moment

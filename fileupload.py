@@ -43,9 +43,6 @@ while 1:
 	time.sleep (30) # here seconds. Wait for one day (86400)
 	after = dict ([(f, None) for f in os.listdir (path_to_watch)]) # after now contains all files currently in the directory
 	added = [f for f in after if not f in before] # added now contains all new files in directory
-	removed = [f for f in before if not f in after] # not really relevant at the moment
-
-	# if added: print "Added: ", ", ".join (added) # output, just to check if new files have been found
 
 	for fname in added: # this iterates over all new files which have been found in the directory
 		if os.path.isfile (fname): # if new file exists
@@ -78,5 +75,4 @@ while 1:
 			# do nothing, as we're not interested in anything but files
 			print (fname + " is no file.")
 
-# if removed: print "Removed: ", ", ".join (removed) # not really relevant at the moment
 before = after # reset for next check which starts after sleep timer

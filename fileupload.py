@@ -40,19 +40,26 @@ def countfailedupload(file):
 
 # endless loop to continuously watch the directory and act upon changes
 while 1: 
-	time.sleep (30) # here seconds. Wait for one day (86400)
-	after = dict ([(f, None) for f in os.listdir (path_to_watch)]) # after now contains all files currently in the directory
-	added = [f for f in after if not f in before] # added now contains all new files in directory
+	# here seconds. Wait for one day (86400)
+	time.sleep (30)
+	# after now contains all files currently in the directory
+	after = dict ([(f, None) for f in os.listdir (path_to_watch)])
+	# added now contains all new files in directory
+	added = [f for f in after if not f in before]
 
-	for fname in added: # this iterates over all new files which have been found in the directory
-		if os.path.isfile (fname): # if new file exists
+	# this iterates over all new files which have been found in the directory
+	for fname in added:
+		# if new file exists
+		if os.path.isfile (fname):
 			print ("file " + fname + " exist!")
 			if filenottoobig(fname) and countfailedupload(fname) < 2:
 				# upload file to server
 				if uploadfiletomyserver(fname):
 					sendmailtoadmin("upload of file " + fname + " successful!")
-					uploadsuccessful = false # to be reset for next upload
-					faileduploads.pop(fname) # remove successfully uploaded file from list of previous failures
+					# to be reset for next upload
+					uploadsuccessful = false
+					# remove successfully uploaded file from list of previous failures
+					faileduploads.pop(fname)
 					# delete file locally
 					## If file exists, delete it ##
 					if os.path.isfile(fname):
@@ -74,5 +81,6 @@ while 1:
 		else:
 			# do nothing, as we're not interested in anything but files
 			print (fname + " is no file.")
-
-before = after # reset for next check which starts after sleep timer
+			
+# reset for next check which starts after sleep timer
+before = after

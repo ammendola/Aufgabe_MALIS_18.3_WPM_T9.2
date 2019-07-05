@@ -5,7 +5,7 @@ import os, time, pathlib, ftplib, smtplib
 path_to_watch = "C:/Upload"
 path_on_server = "/Neues Verzeichnis"
 uploadsuccessful = False
-listoffaileduploadsfromdaybefore = dict()
+faileduploads = dict()
 # create variable containing all files in the directory
 before = dict ([(f, None) for f in os.listdir (path_to_watch)])
 
@@ -13,7 +13,7 @@ before = dict ([(f, None) for f in os.listdir (path_to_watch)])
 def sendmailtoadmin(msg):
 	adminaddress = "ammendol@uni-muenster"
 	server = smtplib.SMTP('secmail.uni-muenster.de', 587) # connect to mail server
-	server.login("ammendol", "XXX") # log in to the server
+	server.login("ammendol", "Password") # log in to the server
 	server.sendmail(adminaddress, adminaddress, msg)
 
 # the following function checks if the file is not too big for upload
@@ -33,8 +33,8 @@ def uploadfiletomyserver(filepath):
 
 # return true if upload did not fail twice before
 def countfailedupload(file):
-	if file in listoffaileduploadsfromdaybefore:
-		return listoffaileduploadsfromdaybefore.get(file)
+	if file in faileduploads:
+		return faileduploads.get(file)
 	else:
 		return 0
 
@@ -52,7 +52,7 @@ while 1:
 				if uploadfiletomyserver(fname):
 					sendmailtoadmin("upload of file " + fname + " successful!")
 					uploadsuccessful = false # to be reset for next upload
-					listoffaileduploadsfromdaybefore.pop(fname) # remove successfully uploaded file from list of previous failures
+					faileduploads.pop(fname) # remove successfully uploaded file from list of previous failures
 					# delete file locally
 					## If file exists, delete it ##
 					if os.path.isfile(fname):
@@ -64,11 +64,11 @@ while 1:
 					# check if upload failed before
 					if countfailedupload(fname) > 0:
 						# set marker to 2 to prevent further uploads (has to be checked before upload!)
-						listoffaileduploadsfromdaybefore['fname'] = 2
+						faileduploads['fname'] = 2
 						sendmailtoadmin("upload of file " + fname + " failed twice, manual check necessary")
 					else:
 						# try again next day, but remember this failure
-						listoffaileduploadsfromdaybefore['fname'] = 1
+						faileduploads['fname'] = 1
 			else:
 				sendmailtoadmin("upload of file " + fname + " file too big for automatic upload")
 		else:
